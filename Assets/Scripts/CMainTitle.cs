@@ -8,8 +8,8 @@ public class CMainTitle : MonoBehaviour {
 	float Alpa4Fade;
 	float AlpaDir;
 	float Time4Fade;
-	float ScrWidth;
-	float ScrHeight;
+	float ScrWidthRatio;
+	float ScrHeightRatio;
 
 	// Use this for initialization
 	void Start () {
@@ -21,8 +21,8 @@ public class CMainTitle : MonoBehaviour {
 
 		this.Alpa4Fade = 1.0f;
 		this.AlpaDir = 0.1f;
-		this.ScrWidth = Screen.width/1280.0f;
-		this.ScrHeight = Screen.height/720.0f;
+		this.ScrWidthRatio = Screen.width/1280.0f;
+		this.ScrHeightRatio = Screen.height/720.0f;
 	}
 	
 	// Update is called once per frame
@@ -36,6 +36,7 @@ public class CMainTitle : MonoBehaviour {
 
 	void OnGUI()
 	{
+		//터치 이미지 점멸
 		Time4Fade += Time.deltaTime;
 		if(Time4Fade >= 0.1f)
 		{
@@ -53,6 +54,6 @@ public class CMainTitle : MonoBehaviour {
 
 		GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), this.bg);
 		GUI.color = new Color (0, 0, 0, Alpa4Fade); 
-		GUI.DrawTexture (new Rect ((Screen.width*0.3f), (Screen.height*0.35f), this.TouchImg.width*ScrWidth, this.TouchImg.height*ScrHeight), this.TouchImg);
+		GUI.DrawTexture (new Rect (384*ScrWidthRatio, 260*ScrHeightRatio, this.TouchImg.width*ScrWidthRatio, this.TouchImg.height*ScrHeightRatio), this.TouchImg);
 	}
 }

@@ -2,27 +2,31 @@
 using System.Collections;
 
 public class CMainMenu : MonoBehaviour {
-	Texture bg;
-	float ScrWidth;
-	float ScrHeight;
+	float ScrWidthRatio;
+	float ScrHeightRatio;
+	GameObject MainMenuBtnSet;
+	Texture StatusUI;
 
 	// Use this for initialization
 	void Start () {
-		this.bg = Resources.Load ("MainMenuUI/background") as Texture;
+		this.ScrWidthRatio = Screen.width/1280.0f;
+		this.ScrHeightRatio = Screen.height/720.0f;
 
-		this.ScrWidth = Screen.width/1280.0f;
-		this.ScrHeight = Screen.height/720.0f;
+		this.MainMenuBtnSet = transform.FindChild("MainMenuBtnSet").gameObject;
+		this.MainMenuBtnSet.SetActive (true);
+		
+		this.StatusUI = Resources.Load ("MainMenuUI/StatusUI") as Texture;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		//스테이터스 바 데이터 계산
 	
 	}
-
 	
-	void OnGUI()
+	void OnGUI() 
 	{
-		GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), this.bg);
+		//스테이터스 바 애니메이션
+		GUI.DrawTexture (new Rect (20 * ScrWidthRatio, 0, this.StatusUI.width * ScrWidthRatio, this.StatusUI.height * ScrHeightRatio), this.StatusUI);
 	}
-
 }
