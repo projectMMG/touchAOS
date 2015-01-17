@@ -10,6 +10,12 @@ public class CMainMenuBtnSet : MonoBehaviour {
 	GameObject FriendBtnSet;
 	GameObject AchivementBtnSet;
 	GameObject OptionBtnSet;
+	Texture DungeonBtn;
+	Texture CardBtn;
+	Texture ShopBtn;
+	Texture FriendBtn;
+	Texture AchivementBtn;
+	Texture OptionBtn;
 
 	// Use this for initialization
 	void Start () {
@@ -27,8 +33,14 @@ public class CMainMenuBtnSet : MonoBehaviour {
 		this.AchivementBtnSet = transform.FindChild("AchivementBtnSet").gameObject;
 		this.AchivementBtnSet.SetActive (false);
 		this.OptionBtnSet = transform.FindChild("OptionBtnSet").gameObject;
-        this.OptionBtnSet.SetActive (false);
-
+        this.OptionBtnSet.SetActive (false); 
+		
+		this.DungeonBtn = Resources.Load ("MainMenuUI/DungeonBtn") as Texture;
+		this.CardBtn = Resources.Load ("MainMenuUI/CardBtn") as Texture;
+		this.ShopBtn = Resources.Load ("MainMenuUI/ShopBtn") as Texture;
+		this.FriendBtn = Resources.Load ("MainMenuUI/FriendBtn") as Texture;
+		this.AchivementBtn = Resources.Load ("MainMenuUI/AchivementBtn") as Texture;
+		this.OptionBtn = Resources.Load ("MainMenuUI/OptionBtn") as Texture;
 		//한줄게시판 영역추가
 	}
  	
@@ -46,6 +58,14 @@ public class CMainMenuBtnSet : MonoBehaviour {
 	void OnGUI() 
 	{
 		//버튼애니메이션
+		//width = 20+40+240(btn)+40+240(btn)+40
+		//height = 10+144+56+144+
+		GUI.DrawTexture (new Rect (60 * ScrWidthRatio, 200 * ScrHeightRatio, this.DungeonBtn.width * ScrWidthRatio, this.DungeonBtn.height * ScrHeightRatio), this.DungeonBtn);
+		GUI.DrawTexture (new Rect (60 * ScrWidthRatio, 370 * ScrHeightRatio, this.CardBtn.width * ScrWidthRatio, this.CardBtn.height * ScrHeightRatio), this.CardBtn);
+		GUI.DrawTexture (new Rect (60 * ScrWidthRatio, 540 * ScrHeightRatio, this.ShopBtn.width * ScrWidthRatio, this.ShopBtn.height * ScrHeightRatio), this.ShopBtn);
+		GUI.DrawTexture (new Rect (340 * ScrWidthRatio, 200 * ScrHeightRatio, this.FriendBtn.width * ScrWidthRatio, this.FriendBtn.height * ScrHeightRatio), this.FriendBtn);
+		GUI.DrawTexture (new Rect (340 * ScrWidthRatio, 370 * ScrHeightRatio, this.AchivementBtn.width * ScrWidthRatio, this.AchivementBtn.height * ScrHeightRatio), this.AchivementBtn);
+		GUI.DrawTexture (new Rect (340 * ScrWidthRatio, 540 * ScrHeightRatio, this.OptionBtn.width * ScrWidthRatio, this.OptionBtn.height * ScrHeightRatio), this.OptionBtn);
 	}
 }
  

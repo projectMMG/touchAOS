@@ -27,6 +27,6 @@ public class CMainMenu : MonoBehaviour {
 	void OnGUI() 
 	{
 		//스테이터스 바 애니메이션
-		GUI.DrawTexture (new Rect (20 * ScrWidthRatio, 0, this.StatusUI.width * ScrWidthRatio, this.StatusUI.height * ScrHeightRatio), this.StatusUI);
+		GUI.DrawTexture (new Rect (20 * ScrWidthRatio, 10 * ScrHeightRatio, this.StatusUI.width * ScrWidthRatio, this.StatusUI.height * ScrHeightRatio), this.StatusUI);
 	}
 }
