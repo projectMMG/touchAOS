@@ -6,15 +6,12 @@ public class CUIObject : MonoBehaviour {
 	Rect[] rCharacterSelectUI;
 	Texture[] tCharacterSelectUI;
 	int selectedCharacter;
-	bool[] selectedUI;
 	Texture tSelectedCharacter;
-	Vector3 worldPos;
 	// Use this for initialization
 	
 	public void SetCharacterSelectUI(){
 		rCharacterSelectUI=new Rect[6];
 		tCharacterSelectUI=new Texture[6];
-		selectedUI = new bool[6];
 		float ratioX=Screen.width/1280.0f;
 		float ratioY=Screen.height/780.0f;
 		for(int i=1; i<=5; i++){
@@ -29,16 +26,11 @@ public class CUIObject : MonoBehaviour {
 	public void DrawCharacterSelectUI(){
 		for(int i=1; i<=5; i++){
 			GUI.DrawTexture(rCharacterSelectUI[i],tCharacterSelectUI[i]);
-			if(selectedUI[i])
-				GUI.DrawTexture(rCharacterSelectUI[i],tSelectedCharacter);
 		}
-
+		if(selectedCharacter!=0)
+			GUI.DrawTexture(rCharacterSelectUI[selectedCharacter],tSelectedCharacter);
 	}
-	public Vector3 ScreentoWorld(Vector3 mousePosition){
-		Vector3 worldPos = Camera.main.ScreenToWorldPoint( new Vector3(mousePosition.x, mousePosition.y, Camera.main.nearClipPlane) );
-		return worldPos;
-	}
-
+	
 	void Start () {
 		SetCharacterSelectUI();
 	}
@@ -52,20 +44,12 @@ public class CUIObject : MonoBehaviour {
 			mousePosition=Input.mousePosition;
 			mousePosition.y=Screen.height-mousePosition.y;
 			//Debug.Log ("mouse clicked!! "+mousePosition.x+","+mousePosition.y);
-			bool isNotInSlectUI=true;
 			for(int i=1; i<=5; i++)
 			{
 				if(rCharacterSelectUI[i].Contains(mousePosition)){
-					isNotInSlectUI=false;
-					Debug.Log (selectedUI[i]);
-					if(i==selectedCharacter)
-						selectedUI[i]=!selectedUI[i];
-					else 
-						selectedCharacter=i;
+					if(i==selectedCharacter)selectedCharacter=0;
+					else selectedCharacter=i;
 				}
-			}
-			if(isNotInSlectUI){
-				worldPos=ScreentoWorld(mousePosition);
 			}
 		}
 	}
