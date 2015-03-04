@@ -47,6 +47,9 @@ public class CMainMenuBtnSet : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//던전버튼클릭 시 동작
+		//if(DungeonBtn.HitTest
+		//awakeScene ("BattleScene");
+
 		//카드버튼클릭 시 동작
 		//상점버튼클릭 시 동작
 		//친구버튼클릭 시 동작
@@ -55,12 +58,24 @@ public class CMainMenuBtnSet : MonoBehaviour {
 
 	}
 
+	void singleGameStart()
+	{
+	}
+
+	void awakeScene(string strSceneName)
+	{
+		AsyncOperation async = Application.LoadLevelAdditiveAsync (strSceneName);
+	}
+
 	void OnGUI() 
 	{
 		//버튼애니메이션
 		//width = 20+40+240(btn)+40+240(btn)+40
 		//height = 10+144+56+144+
-		GUI.DrawTexture (new Rect (60 * ScrWidthRatio, 200 * ScrHeightRatio, this.DungeonBtn.width * ScrWidthRatio, this.DungeonBtn.height * ScrHeightRatio), this.DungeonBtn);
+		if(GUI.Button (new Rect (60 * ScrWidthRatio, 200 * ScrHeightRatio, this.DungeonBtn.width * ScrWidthRatio, this.DungeonBtn.height * ScrHeightRatio), this.DungeonBtn, GUIStyle.none))
+		{
+			awakeScene ("BattleScene");
+		}
 		GUI.DrawTexture (new Rect (60 * ScrWidthRatio, 370 * ScrHeightRatio, this.CardBtn.width * ScrWidthRatio, this.CardBtn.height * ScrHeightRatio), this.CardBtn);
 		GUI.DrawTexture (new Rect (60 * ScrWidthRatio, 540 * ScrHeightRatio, this.ShopBtn.width * ScrWidthRatio, this.ShopBtn.height * ScrHeightRatio), this.ShopBtn);
 		GUI.DrawTexture (new Rect (340 * ScrWidthRatio, 200 * ScrHeightRatio, this.FriendBtn.width * ScrWidthRatio, this.FriendBtn.height * ScrHeightRatio), this.FriendBtn);
